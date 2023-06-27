@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" ng-app="app" ng-controller="titleCtrl">
+    <head>
+    	<meta charset="UTF-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <LINK REL=StyleSheet HREF="../../assets/css/GenEmergencia.css" TYPE="text/css" MEDIA=screen>
+            <title>Generar alerta de emergencia - Disater Evaluator</title>
+        <style>
+        	* {
+	            box-sizing: border-box;
+	            margin: 0;
+	            padding: 0;
+	        }
+        	
+        	body {
+			    width: 100%;
+			    height: 100vh;
+			
+			    display: flex;
+			    flex-direction:column;
+			    justify-content: start;
+			    align-items: center;
+			
+			    background: #181818;
+			}
+			
+			#head {
+	    		width: 100%;
+	            max-width: match-parent;
+	            min-height: 100px;
+	            height: px;
+	 
+	            display: flex;
+	            flex-direction: row;
+	            justify-content: start;
+	            gap: 1rem;
+	            font-family: 'Josefin Sans', sans-serif;
+	 
+	            padding: 2rem;
+	            background: #047c04;
+	            border: medium;
+	            border-color: #373737;
+	        	box-sizing:unset;
+	    		margin-left: 2.5rem;
+	    		font-family: 'Josefin Sans', sans-serif;
+	    	}
+			#head h1 {
+				color: white;
+			}
+			
+			.my-class2{
+			    background-color: C4C4C4;
+			    width: 78%;
+			 height: 6%;
+			}
+			
+			.text-square{  
+			    background: #047c04; 
+			    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			
+			    color:white; 
+			    font-weight:bold; 
+			    padding:15px; 
+			        border:3px solid #373737; 
+			        margin-top:40px; 
+			        margin-bottom:25px; 
+			        text-align:center; 
+			        font-size:22px; 
+			        border-radius:10px; 
+			        width: 75%;
+			}
+			.text-square2{  
+			    background: #047c04; 
+			
+			    color:white; 
+			    font-weight:bold; 
+			    padding:15px; 
+			        border:3px solid #373737; 
+			        margin-top:40px; 
+			        margin-bottom:25px; 
+			        text-align:center; 
+			        font-size:22px; 
+			        border-radius:10px; 
+			        width: 25%;
+			        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			}
+			.my-class3{
+			    background-color: #C4C4C4;
+			    width: 29%;
+			    height: 6%;
+			
+			}
+			
+			.image-button{
+			    width: 100%;
+			    height: 100%;
+			   
+			}
+			.button-menu{
+			    width: 45px;
+			    height: 45px;
+			    margin-top: 25px;
+			    margin-left: 25px;
+			    background-color: transparent;
+			    border: transparent;
+			}
+			
+			.button-generate{
+			width: 150px;
+			height: 50px;
+			float: right ;
+			font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+			background-color: #047c04;
+			border: 3px solid #373737;
+			border-radius: 10px;
+			color: white;
+			font-size:22px;
+			}
+        </style>
+    </head>
+
+    <body class="my-class"> 
+        <div id="head">
+            <button type="button" class="button-menu">
+                <image src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Hamburger_icon_white.svg/1024px-Hamburger_icon_white.svg.png" class="image-button" width="50" height="50">
+                </image>
+             <h1>Disaster Evaluator</h1>
+         
+        </div>
+        
+    <div class="div1" overflow="scroll">
+    	<form method="post" th:action="@{/project/admin/generate}" th:object="${alert}">
+    		<p class="text-square">Tipo de emergencia</p>
+            <input type="text" th:field="*{type}" class="my-class2" name="fname" placeholder="p. ej. Incendio"/><br><br>
+	        <p class="text-square"> Area donde surgio la emergencia</p>
+	        <input type="text" th:field="*{area}" class="my-class2" name="fname" placeholder="p. ej. Electrónica"/><br><br>
+	        <p class="text-square2">Piso</p>
+	        <input type="number" th:field="*{floor}" class="my-class3" name="fname" min="1" max="10" step="1"/><br><br>  
+	        <input type="submit" value="Generar" class="button-generate"/>
+    	</form>
+    </div>
+    </body>
+</html>

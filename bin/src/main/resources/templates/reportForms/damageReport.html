@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="reporteDanios.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <title>Reporte de daños por desastre/accidente</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                width: 100%;
+                height: 140vh;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+
+                background: #181818;
+            }
+
+            #head {
+                width: 100%;
+                max-width: match-parent;
+                min-height: 100px;
+
+                display: flex;
+                flex-direction: row;
+                justify-content: start;
+                gap: 1rem;
+
+                padding: 2rem;
+                background: #202020;
+                border: medium;
+                border-color: #373737;
+            }
+            #head h1 {
+                color: white;
+            }
+            label {
+                font-size: large;
+                color: white;
+            }
+            form {
+                padding-top: 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+                width: 100%;
+                max-width: 400px;
+            }
+            input[type=text],
+            input[type=password],
+            textarea {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border-radius: 1rem;
+            }
+            .btn-primary {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 40%;
+                margin-top: 1.5rem;
+                background-color: #373737;
+                border-color: #4B4B4B;
+                font-size: large;
+            }
+            #details {
+                height: 200px;
+            }
+            #mainContainer {
+                display: flex;
+                flex-direction: row;
+            }
+            #btnContainer {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            #btnNext {
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+    
+		<div id="head">
+     		<i class="fas fa-bars" style="font-size:60px;color:#3A7962;"></i>
+        	<h1> Logo </h1>
+     	</div>
+        <div id="damagesDiv">
+            <form method="post" th:action="@{/project/admin/damages}" th:object="${report}">
+                <label id="accidentType">Tipo de siniestro
+                    <input type="text" th:field="*{type}" placeholder="p. ej. Incendio">
+                </label>
+                <label id="accidentDetails">Detalles adicionales
+                    <textarea id="details" cols="40" rows="5" th:field="*{details}" placeholder="p. ej. Un fuego comenzó en el área de electrónica"></textarea>
+                </label>
+                <label id="accidentLosses">Estimación de pérdidas monetarias: $
+                    <input type="number" th:field="*{losses}" min="0.00" max="100000000.00" step="0.01"/>
+                </label>
+                <label id="accidentLossesDetails">Detalles sobre perdidas
+                    <textarea id="lossesDetails" cols="40" rows="5" th:field="*{lossesDetails}" placeholder="p. ej. Perdida de infraestructura para el área de servidores"></textarea>
+                </label>
+                <label id="accidentEmergencyServices">Organizaciones que acudieron a la emergencia
+                    <input type="text" th:field="*{helpers}" placeholder="p. ej. Cruz Roja, Cuerpo de Bomberos">
+                </label>
+                <label id="createReportBtn">
+                    <input type="submit" class="btn-primary" value="Agregar"/>
+                </label>
+            </form>
+        </div>
+
+
+    </body>
+</html>

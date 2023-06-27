@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <title>Reporte para personal herido</title>
+    
+    <style>
+    	* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction:column;
+    justify-content: start;
+    align-items: center;
+
+    background: #181818;
+}
+
+#head {
+    width: 100%;
+    max-width: match-parent;
+    min-height: 100px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 1rem;
+
+    padding: 2rem;
+    background: #202020;
+    border: medium;
+    border-color: #373737;
+}
+#head h1{
+color:white;
+}
+label{
+font-size:large;
+color:white;
+}
+form {
+padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+    max-width: 400px;
+}
+input[type=text], input[type=password], textarea {
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+box-sizing: border-box;
+border-radius: 1rem;
+}
+.btn-primary {
+display: block;
+font-size:large;
+color:white;
+margin-left: auto;
+margin-right: auto;
+width: 40%;
+margin-top: 1.5rem;
+background-color: #373737;
+border-color: #4B4B4B;
+font-size: large;
+}
+#details{
+    height: 200px;
+}
+#mainContainer{
+    display: flex;
+    flex-direction: row;
+}
+#btnContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#btnNext{
+    margin-top: 20px;
+}
+
+.badges {
+width: 100%;
+padding: 1rem;
+			
+display: flex;
+flex-direction: column;
+justify-content: center;
+	
+gap: 16px;
+}
+		
+.badges a {
+padding: 0.5rem 1rem;
+color:  white;
+background: gray;
+
+border-radius: 0.5rem;
+text-decoration: none;
+}
+    </style>
+</head>
+<body>
+
+	<div id="head">
+     	<i class="fas fa-bars" style="font-size:60px;color:#3A7962;"></i>
+        <h1> Logo </h1>
+     </div>
+
+    <div>
+        <label>Número de personas en las instalaciones:
+            <input type="number" />
+        </label>
+    </div>
+    <div id="mainContainer">
+        <div id="formContainer">
+            <div id="hurtPersonnelDiv">
+                <form method="post" th:action="@{/project/admin/hurt}" th:object="${report}">
+                    <label id="hurtPersonName">Personal herido
+                        <input type="text" th:field="*{person}" placeholder="p. ej. John Doe">
+                    </label>
+                    <label id="hurtPersonDetails">Detalles adicionales
+                        <textarea id="details" cols="40" rows="5" th:field="*{details}" placeholder="p. ej. Quemaduras leves en la mano, tratado en el lugar por personal médico."></textarea>
+                    </label>
+                    <label id="hurtPersonnelBtn">
+                        <input type="submit" class="btn btn-primary" value="Agregar"/>
+                    </label>
+                </form>
+            </div>
+        </div>
+
+        <div id="btnContainer">
+            <div class="badges">
+            	<a th:href="@{/project/admin/hurt}" th:text="Heridos" />
+            </div>
+            <div class="badges">
+            	<a th:href="@{/project/admin/missing}" th:text="Desaparecidos" />
+            </div>
+            <div class="badges">
+            	<a th:href="@{/project/admin/deceased}" th:text="Fallecidos" />
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
